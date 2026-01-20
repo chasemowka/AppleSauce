@@ -1,17 +1,19 @@
 import Foundation
 
-struct Resume: Identifiable {
+struct Resume: Identifiable, Codable {
     let id = UUID()
     let fileName: String
     let uploadDate: Date
-    let skills: [String]
+    let text: String?
 }
 
-struct Job: Identifiable {
-    let id = UUID()
+struct Job: Identifiable, Codable {
+    let id: Int
     let title: String
     let company: String
-    let location: String
-    let description: String
-    let requirements: [String]
+    let skills: [String]
+    
+    var displayId: String {
+        return UUID().uuidString
+    }
 }
