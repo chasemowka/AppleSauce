@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AppleSauce - Preview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #F2F2F7;
+        }
+        
+        .ios-frame {
+            max-width: 390px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 40px;
+            padding: 15px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            height: 844px;
+            overflow: hidden;
+        }
+        
+        .screen {
+            background: #F2F2F7;
+            height: 100%;
+            border-radius: 30px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .status-bar {
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .nav-bar {
+            background: white;
+            padding: 15px 20px;
+            border-bottom: 1px solid #E5E5EA;
+        }
+        
+        .nav-title {
+            font-size: 34px;
+            font-weight: 700;
+            color: #000;
+        }
+        
+        .content {
+            flex: 1;
+            padding: 20px;
+        }
+        
+        .job-card {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        
+        .job-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 4px;
+        }
+        
+        .job-company {
+            font-size: 15px;
+            color: #007AFF;
+            margin-bottom: 8px;
+        }
+        
+        .job-details {
+            font-size: 14px;
+            color: #8E8E93;
+            display: flex;
+            gap: 12px;
+        }
+        
+        .job-salary {
+            font-size: 16px;
+            font-weight: 600;
+            color: #34C759;
+            margin-top: 8px;
+        }
+        
+        .suggestion-card {
+            background: #FFF3CD;
+            border-left: 4px solid #FF9500;
+            border-radius: 8px;
+            padding: 12px;
+            margin-bottom: 12px;
+        }
+        
+        .suggestion-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 4px;
+        }
+        
+        .suggestion-text {
+            font-size: 13px;
+            color: #3C3C43;
+        }
+        
+        .upload-button {
+            background: #007AFF;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            font-size: 17px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        
+        .upload-button:hover {
+            background: #0051D5;
+        }
+        
+        .tab-bar {
+            background: white;
+            display: flex;
+            justify-content: space-around;
+            padding: 8px 0;
+            border-top: 1px solid #E5E5EA;
+        }
+        
+        .tab {
+            text-align: center;
+            padding: 8px;
+            color: #8E8E93;
+            font-size: 10px;
+            cursor: pointer;
+        }
+        
+        .tab.active {
+            color: #007AFF;
+        }
+        
+        .tab-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+        
+        .view-selector {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: center;
+        }
+        
+        .view-btn {
+            padding: 8px 16px;
+            border: 1px solid #007AFF;
+            background: white;
+            color: #007AFF;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .view-btn.active {
+            background: #007AFF;
+            color: white;
+        }
+        
+        .sidebar {
+            background: white;
+            border-radius: 12px;
+            padding: 16px;
+            margin-top: 20px;
+        }
+        
+        .sidebar-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; padding: 20px;">
+        <h1 style="color: #007AFF;">AppleSauce Preview</h1>
+        <div class="view-selector">
+            <button class="view-btn active" onclick="showView('upload')">Upload</button>
+            <button class="view-btn" onclick="showView('jobs')">Jobs</button>
+            <button class="view-btn" onclick="showView('detail')">Job Detail</button>
+        </div>
+    </div>
+
+    <div class="ios-frame">
+        <div class="screen">
+            <div class="status-bar">
+                <span>9:41</span>
+                <span>📶 📡 🔋</span>
+            </div>
+            
+            <!-- Upload View -->
+            <div id="upload-view" class="view-content">
+                <div class="nav-bar">
+                    <div class="nav-title">Upload Resume</div>
+                </div>
+                <div class="content">
+                    <button class="upload-button">📄 Upload Resume</button>
+                    <div style="text-align: center; color: #8E8E93; font-size: 14px;">
+                        <p>Upload your resume to get started</p>
+                        <p style="margin-top: 8px;">Supports PDF and DOCX</p>
+                    </div>
+                    <div style="margin-top: 40px;">
+                        <h3 style="margin-bottom: 12px;">Recent Uploads</h3>
+                        <div class="job-card">
+                            <div class="job-title">Resume_2024.pdf</div>
+                            <div class="job-details">
+                                <span>📅 Jan 15, 2024</span>
+                                <span>✅ Parsed</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-bar">
+                    <div class="tab active">
+                        <div class="tab-icon">📄</div>
+                        <div>Upload</div>
+                    </div>
+                    <div class="tab">
+                        <div class="tab-icon">💼</div>
+                        <div>Jobs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Jobs View -->
+            <div id="jobs-view" class="view-content" style="display: none;">
+                <div class="nav-bar">
+                    <div class="nav-title">Job Matches</div>
+                </div>
+                <div class="content">
+                    <div class="job-card">
+                        <div class="job-title">Senior iOS Developer</div>
+                        <div class="job-company">Apple Inc.</div>
+                        <div class="job-details">
+                            <span>📍 Cupertino, CA</span>
+                            <span>⏰ Full-time</span>
+                        </div>
+                        <div class="job-salary">$150,000 - $200,000</div>
+                    </div>
+                    <div class="job-card">
+                        <div class="job-title">Mobile Engineer</div>
+                        <div class="job-company">Meta</div>
+                        <div class="job-details">
+                            <span>📍 Menlo Park, CA</span>
+                            <span>⏰ Full-time</span>
+                        </div>
+                        <div class="job-salary">$140,000 - $190,000</div>
+                    </div>
+                    <div class="job-card">
+                        <div class="job-title">SwiftUI Developer</div>
+                        <div class="job-company">Amazon</div>
+                        <div class="job-details">
+                            <span>📍 Seattle, WA</span>
+                            <span>⏰ Remote</span>
+                        </div>
+                        <div class="job-salary">$130,000 - $180,000</div>
+                    </div>
+                </div>
+                <div class="tab-bar">
+                    <div class="tab">
+                        <div class="tab-icon">📄</div>
+                        <div>Upload</div>
+                    </div>
+                    <div class="tab active">
+                        <div class="tab-icon">💼</div>
+                        <div>Jobs</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Job Detail View -->
+            <div id="detail-view" class="view-content" style="display: none;">
+                <div class="nav-bar">
+                    <div style="font-size: 17px; color: #007AFF; margin-bottom: 8px;">← Back</div>
+                    <div style="font-size: 24px; font-weight: 700;">Senior iOS Developer</div>
+                </div>
+                <div class="content">
+                    <div class="job-card">
+                        <div class="job-company" style="font-size: 18px;">Apple Inc.</div>
+                        <div class="job-details" style="margin-top: 8px;">
+                            <span>📍 Cupertino, CA</span>
+                            <span>⏰ Full-time</span>
+                        </div>
+                        <div class="job-salary">$150,000 - $200,000</div>
+                        <p style="margin-top: 16px; color: #3C3C43; line-height: 1.5;">
+                            We're looking for an experienced iOS developer to join our team...
+                        </p>
+                    </div>
+                    
+                    <div class="sidebar">
+                        <div class="sidebar-title">Resume Suggestions</div>
+                        <div class="suggestion-card">
+                            <div class="suggestion-title">🔴 Add SwiftUI Experience</div>
+                            <div class="suggestion-text">This role requires SwiftUI. Add projects showcasing your SwiftUI skills.</div>
+                        </div>
+                        <div class="suggestion-card" style="background: #E3F2FD; border-color: #007AFF;">
+                            <div class="suggestion-title">🔵 Highlight Team Leadership</div>
+                            <div class="suggestion-text">Emphasize your experience leading iOS development teams.</div>
+                        </div>
+                        <div class="suggestion-card" style="background: #E8F5E9; border-color: #34C759;">
+                            <div class="suggestion-title">🟢 Good Match</div>
+                            <div class="suggestion-text">Your 5 years of iOS experience aligns well with requirements.</div>
+                        </div>
+                    </div>
+                    
+                    <button class="upload-button" style="margin-top: 20px;">Apply Now →</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showView(view) {
+            document.querySelectorAll('.view-content').forEach(v => v.style.display = 'none');
+            document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+            
+            if (view === 'upload') {
+                document.getElementById('upload-view').style.display = 'flex';
+                document.querySelectorAll('.view-btn')[0].classList.add('active');
+            } else if (view === 'jobs') {
+                document.getElementById('jobs-view').style.display = 'flex';
+                document.querySelectorAll('.view-btn')[1].classList.add('active');
+            } else if (view === 'detail') {
+                document.getElementById('detail-view').style.display = 'flex';
+                document.querySelectorAll('.view-btn')[2].classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
