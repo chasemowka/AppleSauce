@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from services.resume_parser import parse_resume
 from services.job_matcher import match_jobs, get_suggestions
 from services.job_api_service import job_api_service
+from services.clearance_filter import clearance_filter, ClearanceLevel
 import json
 
 app = FastAPI(title="AppleSauce API", description="Resume matching and job search API")
@@ -20,6 +21,49 @@ async def upload_resume(file: UploadFile = File(...)):
     content = await file.read()
     text = parse_resume(content, file.filename)
     return {"filename": file.filename, "text": text, "message": "Resume parsed successfully"}
+
+@app.get("/jobs/clearance")
+async def get_jobs_by_clearance(level: str = "none", query: str = "engineer", source: str = "all"):
+    """
+    Get job listings filtered by security clearance level
+    
+    - level: "none", "confidential", "secret", "top_secret"
+    - query: Search keywords (e.g., "python developer", "data scientist")
+    - source: "indeed", "aws", "netflix", "microsoft", "all"
+    """
+    # Get jobs using existing endpoint logic
+    jobs = []
+    
+    if source == "all" or source == "indeed":
+        indeed_jobs = job_api_service.search_indeed_jobs(query)
+        jobs.extend(indeed_jobs)
+    
+    if source == "all" or source in ["aws", "amazon"]:
+        aws_jobs = job_api_service.search_company_careers("aws", query)
+        jobs.extend(aws_jobs)
+    
+    if source == "all" or source == "netflix":
+        netflix_jobs = job_api_service.search_company_careers("netflix", query)
+        jobs.extend(netflix_jobs)
+    
+    if source == "all" or source == "microsoft":
+        microsoft_jobs = job_api_service.search_company_careers("microsoft", query)
+        jobs.extend(microsoft_jobs)
+    
+    # Filter by clearance level
+    try:
+        clearance_level = ClearanceLevel(level.lower())
+    except ValueError:
+        clearance_level = ClearanceLevel.NONE
+    
+    filtered_jobs = clearance_filter.filter_jobs_by_clearance(jobs, clearance_level)
+    
+    return {
+        "jobs": filtered_jobs, 
+        "count": len(filtered_jobs), 
+        "query": query,
+        "clearance_level": level
+    }
 
 @app.get("/jobs")
 async def get_jobs(query: str = "software engineer", source: str = "all"):

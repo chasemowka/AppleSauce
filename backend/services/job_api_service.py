@@ -190,6 +190,34 @@ class JobAPIService:
             "source": "Microsoft Careers"
         }]
     
+    def extract_clearance_requirements(self, description: str) -> str:
+        """Extract security clearance requirements from job description"""
+        description_lower = description.lower()
+        
+        # Top Secret keywords
+        ts_keywords = ["top secret", "ts/sci", "ts clearance", "polygraph"]
+        for keyword in ts_keywords:
+            if keyword in description_lower:
+                return "top_secret"
+        
+        # Secret keywords  
+        secret_keywords = ["secret clearance", "secret security clearance"]
+        for keyword in secret_keywords:
+            if keyword in description_lower:
+                return "secret"
+        
+        # Confidential keywords
+        conf_keywords = ["confidential clearance", "confidential security clearance"]
+        for keyword in conf_keywords:
+            if keyword in description_lower:
+                return "confidential"
+        
+        # General security clearance
+        if "security clearance" in description_lower:
+            return "secret"
+        
+        return "none"
+    
     def _extract_skills(self, description: str) -> List[str]:
         """Extract common tech skills from job description"""
         common_skills = [
