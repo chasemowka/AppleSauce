@@ -132,24 +132,24 @@ class APIService {
 }
 
 // Response models
-struct ResumeParseResponse: Codable {
+struct ResumeParseResponse: Codable, @unchecked Sendable {
     let text: String
     let filename: String
 }
 
-struct JobsResponse: Codable {
+struct JobsResponse: Codable, @unchecked Sendable {
     let jobs: [Job]
 }
 
-struct MatchResponse: Codable {
+struct MatchResponse: Codable, @unchecked Sendable {
     let matches: [JobMatch]
 }
 
-struct JobMatch: Codable {
+struct JobMatch: Codable, @unchecked Sendable {
     let job: Job
     let score: Double
 }
 
-struct SuggestionsResponse: Codable {
+struct SuggestionsResponse: Codable, @unchecked Sendable {
     let suggestions: [String]
 }

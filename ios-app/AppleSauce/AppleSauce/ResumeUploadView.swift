@@ -32,7 +32,7 @@ struct ResumeUploadView: View {
                     let resume = Resume(
                         fileName: url.lastPathComponent,
                         uploadDate: Date(),
-                        skills: ["iOS", "Swift", "SwiftUI"]
+                        text: nil
                     )
                     uploadedResumes.append(resume)
                 }
