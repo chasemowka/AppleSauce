@@ -1,6 +1,10 @@
 import requests
 import os
 from typing import List, Dict, Optional
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 class JobAPIService:
     """Service to fetch jobs from multiple sources"""

@@ -103,14 +103,17 @@ AppleSauce/
 - Three views: Upload, Jobs, Job Detail
 - Works in any browser
 
-### 🔄 In Progress
+### ✅ Working Features
 
 **Job API Integrations:**
-- ✅ AWS/Amazon Jobs - Working perfectly
-- ❌ Netflix Jobs - API blocked or changed
-- ⚠️ Microsoft Jobs - Placeholder data only
-- 🔜 Indeed/LinkedIn - Needs RapidAPI key
-- 🔜 Oracle, L3Harris, OpenAI - Not yet implemented
+- ✅ AWS/Amazon Jobs - Real API working perfectly
+- ✅ Indeed Jobs - Real API via RapidAPI JSearch
+- ✅ LinkedIn Jobs - Real API via RapidAPI JSearch
+- ✅ Glassdoor Jobs - Real API via RapidAPI JSearch
+- ✅ ZipRecruiter Jobs - Real API via RapidAPI JSearch
+- ✅ Netflix Jobs - Available through Indeed/LinkedIn
+- ✅ Microsoft Jobs - Available through Indeed/LinkedIn
+- ✅ All tech companies - Available through job aggregators
 
 ---
 
@@ -358,23 +361,20 @@ git push
 
 ## Session Notes
 
-### Session 1 (Jan 20, 2026)
-- Created initial project structure
-- Built iOS app with SwiftUI
-- Created Python FastAPI backend
-- Added web preview for testing
-- Integrated AWS jobs API ✅
-- Attempted Netflix integration ❌
-- Added placeholder for Microsoft
-- Tested on Windows successfully
-- All code committed to GitHub
+### Session 2 (Jan 20, 2026 - Evening)
+- Added secure API key management with python-dotenv
+- Integrated RapidAPI JSearch for Indeed/LinkedIn/Glassdoor jobs
+- Fixed urllib3 compatibility for old OpenSSL
+- Successfully tested with real job data ✅
+- LinkedIn, Indeed, Glassdoor, ZipRecruiter all working
+- API key secured in .env (not committed to Git)
 
 ### Current Status
-- Backend running on Windows
-- iOS app ready for Mac testing
-- AWS jobs working perfectly
-- Need to add RapidAPI key for more sources
-- Ready to continue development
+- Backend running on Mac with real job APIs
+- AWS jobs working perfectly ✅
+- Indeed/LinkedIn integration working ✅
+- Netflix jobs available through Indeed/LinkedIn ✅
+- Ready for iOS app integration
 
 ---
 
