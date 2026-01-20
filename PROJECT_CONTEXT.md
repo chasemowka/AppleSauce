@@ -14,6 +14,28 @@ A resume analysis and job matching application that:
 4. Provides resume optimization suggestions per job
 5. Native iOS app with backend API
 
+## Development Environment Notes
+
+### Linux Environment (Current)
+- ✅ Backend development fully supported
+- ✅ API testing and integration
+- ✅ Web preview for UI visualization
+- ❌ Cannot run Xcode (Mac only)
+- ❌ Cannot test iOS app directly
+- ✅ Can use web preview at `web-preview/index.html`
+
+### Mac Environment (Required for iOS)
+- ✅ Full iOS app development
+- ✅ Xcode for building and testing
+- ✅ iOS Simulator
+- ✅ Deploy to physical iPhone
+- Installation: App Store → Search "Xcode" → Install (free, ~15GB)
+
+### Testing Options on Linux
+1. **Backend API Testing:** http://127.0.0.1:8000/docs
+2. **Web Preview:** `cd web-preview && python -m http.server 8080`
+3. **API Calls:** Use curl or Postman to test endpoints
+
 ---
 
 ## Tech Stack
@@ -368,13 +390,25 @@ git push
 - Successfully tested with real job data ✅
 - LinkedIn, Indeed, Glassdoor, ZipRecruiter all working
 - API key secured in .env (not committed to Git)
+- Resolved git authentication issues
+- Copied changes to ~/testing-app/AppleSauce
+- Successfully pushed all changes to GitHub ✅
+
+### Session 3 (Jan 20, 2026 - Late Evening)
+- Confirmed working on Linux environment (not Mac)
+- Backend fully functional with real job APIs
+- Identified iOS app testing requires Mac with Xcode
+- Web preview available for UI testing on Linux
+- All code committed and pushed to GitHub
 
 ### Current Status
-- Backend running on Mac with real job APIs
+- Backend running on Linux with real job APIs ✅
 - AWS jobs working perfectly ✅
-- Indeed/LinkedIn integration working ✅
-- Netflix jobs available through Indeed/LinkedIn ✅
-- Ready for iOS app integration
+- Indeed/LinkedIn/Glassdoor integration working ✅
+- Netflix, Microsoft jobs available through aggregators ✅
+- iOS app code ready, needs Mac for testing
+- Web preview functional for UI visualization
+- Ready for continued backend development or Mac testing
 
 ---
 
