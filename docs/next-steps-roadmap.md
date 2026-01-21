@@ -13,10 +13,11 @@
 ### 1.2 Frontend (Web Preview): UI Cleanup
 - **Strategy:** Modernize the "Web Preview" to match the "Premium Design" aesthetic of the iOS app.
 - **Action Items:**
-  - Remove hardcoded HTML job cards in `index.html`.
-  - Implement a JavaScript fetcher to load jobs dynamically from `http://127.0.0.1:8000/jobs`.
-  - Handle empty states gracefully (e.g., "No jobs found for your search").
-  - Improve CSS: Use system fonts, better padding/margins, and subtle shadows.
+  - [x] Remove hardcoded HTML job cards in `index.html`.
+  - [x] Implement a JavaScript fetcher to load jobs dynamically from `http://127.0.0.1:8000/jobs`.
+  - [x] Handle empty states gracefully (e.g., "No jobs found for your search").
+  - [ ] Improve CSS: Use system fonts, better padding/margins, and subtle shadows.
+  - **Status Update (Jan 20, 2026):** Fixed critical CSS bug where jobs were hidden due to missing `flex-direction: column`. Error handling added to UI.
 
 ## Phase 2: Resume Intelligence (Scraping/Parsing)
 **Goal:** Transform the resume parser from a simple text dumper into a structured data extractor.
