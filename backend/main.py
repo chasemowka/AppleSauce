@@ -1,6 +1,6 @@
 from fastapi import FastAPI, UploadFile, File
 from fastapi.middleware.cors import CORSMiddleware
-from services.resume_parser import parse_resume
+from services.resume_parser import parse_resume_structured
 from services.job_matcher import match_jobs, get_suggestions
 from services.job_api_service import job_api_service
 from services.clearance_filter import clearance_filter, ClearanceLevel
@@ -17,10 +17,18 @@ app.add_middleware(
 
 @app.post("/upload-resume")
 async def upload_resume(file: UploadFile = File(...)):
-    """Upload and parse a resume (PDF or DOCX)"""
+    """Upload and parse a resume (PDF or DOCX), returning structured data"""
     content = await file.read()
-    text = parse_resume(content, file.filename)
-    return {"filename": file.filename, "text": text, "message": "Resume parsed successfully"}
+    result = parse_resume_structured(content, file.filename)
+
+    return {
+        "filename": file.filename,
+        "text": result.get("text", ""),
+        "skills": result.get("skills", []),
+        "sections": result.get("sections", {}),
+        "experience_years": result.get("experience_years", 0),
+        "message": "Resume parsed successfully" if "error" not in result else result["error"]
+    }
 
 @app.get("/jobs/clearance")
 async def get_jobs_by_clearance(level: str = "none", query: str = "engineer", source: str = "all"):
@@ -108,13 +116,14 @@ async def get_company_jobs(company: str, keywords: str = ""):
 async def match_resume(data: dict):
     """Match resume text to jobs and return scored results"""
     resume_text = data.get("resume_text", "")
+    resume_skills = data.get("skills", [])  # Pre-extracted skills from resume
     query = data.get("query", "software engineer")
-    
+
     # Get jobs
     jobs = job_api_service.search_indeed_jobs(query)
-    
-    # Match and score
-    matches = match_jobs(resume_text, jobs)
+
+    # Match and score with weighted algorithm
+    matches = match_jobs(resume_text, jobs, resume_skills if resume_skills else None)
     return {"matches": matches, "count": len(matches)}
 
 @app.post("/suggestions")

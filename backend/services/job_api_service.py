@@ -1,6 +1,6 @@
 import requests
 import os
-from typing import List, Dict, Optional
+from typing import List, Dict
 from dotenv import load_dotenv
 
 # Load environment variables from .env file
@@ -20,8 +20,8 @@ class JobAPIService:
         Sign up: https://rapidapi.com/letscrape-6bRBa3QguO5/api/jsearch
         """
         if not self.rapidapi_key:
-            print("Warning: RAPIDAPI_KEY not set. Using mock data.")
-            return self._get_mock_jobs(query)
+            print("Warning: RAPIDAPI_KEY not set. No jobs will be returned from JSearch.")
+            return []
         
         url = "https://jsearch.p.rapidapi.com/search"
         
@@ -62,22 +62,14 @@ class JobAPIService:
             
         except Exception as e:
             print(f"Error fetching from JSearch API: {e}")
-            return self._get_mock_jobs(query)
+            return []
     
     def search_company_careers(self, company: str, keywords: str = "") -> List[Dict]:
         """
         Search specific company career pages
-        Companies: Netflix, AWS, Microsoft, Oracle, L3Harris, OpenAI
+        Currently supported: Netflix, AWS
+        Not yet implemented: Microsoft, Oracle, L3Harris, OpenAI
         """
-        company_urls = {
-            "netflix": "https://jobs.netflix.com/api/search",
-            "aws": "https://www.amazon.jobs/en/search.json",
-            "microsoft": "https://careers.microsoft.com/professionals/us/en/search-results",
-            "oracle": "https://careers.oracle.com/api/jobs",
-            "l3harris": "https://careers.l3harris.com/api/jobs",
-            "openai": "https://openai.com/careers/search"
-        }
-        
         company_lower = company.lower()
         
         if company_lower == "aws" or company_lower == "amazon":
@@ -87,18 +79,9 @@ class JobAPIService:
         elif company_lower == "microsoft":
             return self._fetch_microsoft_jobs(keywords)
         else:
-            # For now, return placeholder for other companies
-            return [{
-                "id": hash(company + keywords),
-                "title": f"Software Engineer at {company}",
-                "company": company,
-                "location": "Various Locations",
-                "description": f"Check {company}'s career page for current openings",
-                "url": company_urls.get(company_lower, f"https://{company_lower}.com/careers"),
-                "skills": keywords.split(),
-                "salary": "Competitive",
-                "source": f"{company} Careers"
-            }]
+            # Company not yet supported
+            print(f"Warning: {company} careers API not implemented. No jobs returned.")
+            return []
     
     def _fetch_amazon_jobs(self, keywords: str) -> List[Dict]:
         """Fetch jobs from Amazon/AWS careers API"""
@@ -174,21 +157,9 @@ class JobAPIService:
     
     def _fetch_microsoft_jobs(self, keywords: str) -> List[Dict]:
         """Fetch jobs from Microsoft careers"""
-        # Microsoft careers API endpoint
-        url = "https://careers.microsoft.com/professionals/us/en/search-results"
-        
-        # For now, return placeholder - Microsoft's API requires more complex auth
-        return [{
-            "id": hash("microsoft" + keywords),
-            "title": f"Software Engineer - {keywords}",
-            "company": "Microsoft",
-            "location": "Redmond, WA",
-            "description": "Visit Microsoft Careers for current openings",
-            "url": "https://careers.microsoft.com",
-            "skills": keywords.split(),
-            "salary": "Competitive",
-            "source": "Microsoft Careers"
-        }]
+        # Microsoft's API requires complex auth - not yet implemented
+        print(f"Warning: Microsoft jobs API not implemented. No jobs returned for keywords: {keywords}")
+        return []
     
     def extract_clearance_requirements(self, description: str) -> str:
         """Extract security clearance requirements from job description"""
@@ -231,32 +202,6 @@ class JobAPIService:
         
         return found_skills[:5]  # Return top 5
     
-    def _get_mock_jobs(self, query: str) -> List[Dict]:
-        """Return mock jobs when API is not available"""
-        return [
-            {
-                "id": 1,
-                "title": f"Software Engineer - {query}",
-                "company": "TechCorp",
-                "location": "San Francisco, CA",
-                "description": f"Looking for {query} experience",
-                "url": "https://example.com/job1",
-                "skills": ["python", "javascript", "react"],
-                "salary": "$120k - $180k",
-                "source": "Mock Data"
-            },
-            {
-                "id": 2,
-                "title": f"Senior Developer - {query}",
-                "company": "StartupXYZ",
-                "location": "Remote",
-                "description": f"Remote position for {query}",
-                "url": "https://example.com/job2",
-                "skills": ["python", "aws", "docker"],
-                "salary": "$140k - $200k",
-                "source": "Mock Data"
-            }
-        ]
 
 # Initialize service
 job_api_service = JobAPIService()
