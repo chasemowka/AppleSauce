@@ -4,6 +4,10 @@ from services.resume_parser import parse_resume_structured
 from services.job_matcher import match_jobs, get_suggestions
 from services.job_api_service import job_api_service
 from services.clearance_filter import clearance_filter, ClearanceLevel
+from services.llm_service import llm_service
+from routes.auth import router as auth_router
+from routes.user import router as user_router
+from database import init_db
 import json
 
 app = FastAPI(title="AppleSauce API", description="Resume matching and job search API")
@@ -14,6 +18,15 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Include routers
+app.include_router(auth_router)
+app.include_router(user_router)
+
+# Initialize database on startup
+@app.on_event("startup")
+async def startup_event():
+    init_db()
 
 @app.post("/upload-resume")
 async def upload_resume(file: UploadFile = File(...)):
@@ -128,20 +141,57 @@ async def match_resume(data: dict):
 
 @app.post("/suggestions")
 async def get_job_suggestions(data: dict):
-    """Get resume improvement suggestions for a specific job"""
+    """
+    Get resume improvement suggestions for a specific job
+
+    Request body:
+    - resume_text: Full resume text
+    - resume_skills: List of skills extracted from resume
+    - job_title: Title of the job
+    - job_description: Job description text
+    - job_skills: Skills required by the job
+    - matched_skills: Skills that matched between resume and job
+    """
     resume_text = data.get("resume_text", "")
-    job_id = data.get("job_id", 1)
-    
-    # For now, return generic suggestions
-    # TODO: Integrate AWS Bedrock for AI-powered suggestions
-    suggestions = [
-        f"Add more keywords related to the job requirements",
-        f"Highlight relevant projects and achievements",
-        f"Quantify your accomplishments with metrics",
-        f"Tailor your summary to match the job description"
-    ]
-    
-    return {"suggestions": suggestions, "job_id": job_id}
+    resume_skills = data.get("resume_skills", [])
+    job_title = data.get("job_title", "")
+    job_description = data.get("job_description", "")
+    job_skills = data.get("job_skills", [])
+    matched_skills = data.get("matched_skills", [])
+
+    # Use LLM service to generate personalized suggestions
+    suggestions = llm_service.generate_job_suggestions(
+        resume_text=resume_text,
+        resume_skills=resume_skills,
+        job_title=job_title,
+        job_description=job_description,
+        job_skills=job_skills,
+        matched_skills=matched_skills
+    )
+
+    return {
+        "suggestions": suggestions,
+        "llm_powered": llm_service.is_available()
+    }
+
+@app.post("/resume/analyze")
+async def analyze_resume(data: dict):
+    """
+    Analyze resume quality and provide feedback
+
+    Request body:
+    - resume_text: Full resume text
+    - sections: Dictionary of detected sections (optional)
+    """
+    resume_text = data.get("resume_text", "")
+    sections = data.get("sections", {})
+
+    analysis = llm_service.analyze_resume_quality(resume_text, sections)
+
+    return {
+        "analysis": analysis,
+        "llm_powered": llm_service.is_available()
+    }
 
 @app.get("/")
 async def root():
@@ -149,7 +199,8 @@ async def root():
     return {
         "status": "running",
         "message": "AppleSauce API is running",
-        "docs": "/docs"
+        "docs": "/docs",
+        "llm_available": llm_service.is_available()
     }
 
 if __name__ == "__main__":

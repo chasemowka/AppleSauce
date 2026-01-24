@@ -9,16 +9,16 @@ struct JobCard: View {
     let onBookmarkTap: () -> Void
     
     var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack {
-                VStack(alignment: .leading, spacing: 4) {
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(alignment: .top) {
+                VStack(alignment: .leading, spacing: 6) {
                     Text(title)
                         .font(.title3)
                         .foregroundColor(.textPrimary)
                         .lineLimit(2)
                     
                     Text(company)
-                        .font(.callout)
+                        .font(.bodyMedium)
                         .foregroundColor(.textSecondary)
                 }
                 
@@ -26,40 +26,58 @@ struct JobCard: View {
                 
                 Button(action: onBookmarkTap) {
                     Image(systemName: isBookmarked ? "bookmark.fill" : "bookmark")
-                        .foregroundColor(isBookmarked ? .primaryBlue : .textTertiary)
-                        .font(.system(size: 18))
+                        .foregroundColor(isBookmarked ? .primaryBrand : .textTertiary)
+                        .font(.system(size: 20))
+                        .padding(8)
+                        .background(Color.backgroundPrimary)
+                        .clipShape(Circle())
                 }
             }
             
-            HStack {
-                Label(location, systemImage: "location")
-                    .font(.footnote)
+            HStack(spacing: 8) {
+                Label(location, systemImage: "location.fill")
+                    .font(.caption1)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 6)
+                    .background(Color.backgroundPrimary)
                     .foregroundColor(.textSecondary)
+                    .cornerRadius(20)
                 
                 if let salary = salary {
-                    Spacer()
                     Text(salary)
-                        .font(.footnote)
+                        .font(.caption1)
+                        .padding(.horizontal, 10)
+                        .padding(.vertical, 6)
+                        .background(Color.success.opacity(0.1))
                         .foregroundColor(.success)
-                        .fontWeight(.medium)
+                        .cornerRadius(20)
                 }
+                
+                Spacer()
             }
         }
-        .padding(16)
+        .padding(20)
         .background(Color.backgroundCard)
-        .cornerRadius(12)
-        .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
+        .cornerRadius(24)
+        .shadow(color: .black.opacity(0.08), radius: 12, x: 0, y: 6)
+        .overlay(
+            RoundedRectangle(cornerRadius: 24)
+                .stroke(Color.white.opacity(0.5), lineWidth: 1)
+        )
     }
 }
 
 #Preview {
-    JobCard(
-        title: "iOS Developer",
-        company: "Tech Company",
-        location: "San Francisco, CA",
-        salary: "$120k - $150k",
-        isBookmarked: false,
-        onBookmarkTap: {}
-    )
-    .padding()
+    ZStack {
+        Color.backgroundPrimary.ignoresSafeArea()
+        JobCard(
+            title: "Senior iOS Engineer",
+            company: "Apple Inc.",
+            location: "Cupertino, CA",
+            salary: "$180k - $220k",
+            isBookmarked: true,
+            onBookmarkTap: {}
+        )
+        .padding()
+    }
 }

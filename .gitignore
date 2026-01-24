@@ -35,3 +35,12 @@ Pods/
 
 # Logs
 *.log
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# Documentation
+docs/app-icons-launch-screen-guide.md
+docs/clearance-filter-plan.md
