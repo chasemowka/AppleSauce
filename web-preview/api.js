@@ -1,5 +1,5 @@
 // AppleSauce API Client
-const API_BASE = 'http://127.0.0.1:8000';
+const API_BASE = 'http://127.0.0.1:8001';
 
 const api = {
     // Search jobs from all sources
@@ -24,20 +24,61 @@ const api = {
         }
     },
 
+    // Get Dashboard Stats
+    async getDashboard(token) {
+        try {
+            const response = await fetch(`${API_BASE}/user/dashboard`, {
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            });
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return await response.json();
+        } catch (error) {
+            console.error('Dashboard error:', error);
+            return null;
+        }
+    },
+
     // Upload and parse resume
-    async uploadResume(file) {
+    async uploadResume(file, token) {
         try {
             const formData = new FormData();
             formData.append('file', file);
 
+            const headers = {};
+            if (token) headers['Authorization'] = `Bearer ${token}`;
+
+            const response = await fetch(`${API_BASE}/user/resumes/upload`, {
+                method: 'POST',
+                headers: headers,
+                body: formData
+            });
+
+            // Fallback to public endpoint if auth fails or not provided
+            if (response.status === 401 || response.status === 404) {
+                return this.uploadResumePublic(file);
+            }
+
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return await response.json();
+        } catch (error) {
+            console.error('Error uploading resume:', error);
+            return this.uploadResumePublic(file);
+        }
+    },
+
+    async uploadResumePublic(file) {
+        try {
+            const formData = new FormData();
+            formData.append('file', file);
             const response = await fetch(`${API_BASE}/upload-resume`, {
                 method: 'POST',
                 body: formData
             });
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
             return await response.json();
-        } catch (error) {
-            console.error('Error uploading resume:', error);
+        } catch (e) {
             return null;
         }
     },

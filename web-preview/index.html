@@ -13,230 +13,227 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            background: #F2F2F7;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #E5E5EA;
+            /* Darker background to make phone pop */
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .ios-frame {
-            max-width: 390px;
-            margin: 20px auto;
-            background: white;
-            border-radius: 40px;
-            padding: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            width: 390px;
             height: 844px;
+            background: #F6F6F6;
+            /* Opera Light BG */
+            border-radius: 50px;
+            border: 8px solid #333;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.2);
             overflow: hidden;
+            position: relative;
         }
 
         .screen {
-            background: #F2F2F7;
             height: 100%;
-            border-radius: 30px;
             overflow-y: auto;
             display: flex;
             flex-direction: column;
+            padding-bottom: 100px;
+            /* Space for floating dock */
+            background: linear-gradient(180deg, #F6F6F6 0%, #FFFFFF 100%);
         }
 
         .status-bar {
-            padding: 10px 20px;
+            padding: 14px 26px;
             display: flex;
             justify-content: space-between;
             font-size: 14px;
             font-weight: 600;
+            color: #000;
+            z-index: 10;
         }
 
         .nav-bar {
-            background: white;
-            padding: 15px 20px;
-            border-bottom: 1px solid #E5E5EA;
+            padding: 10px 24px;
+            margin-bottom: 10px;
         }
 
         .nav-title {
             font-size: 34px;
-            font-weight: 700;
-            color: #000;
+            font-weight: 800;
+            /* Bolder */
+            color: #0A0A0A;
+            letter-spacing: -0.5px;
         }
 
         .content {
             flex: 1;
-            padding: 20px;
+            padding: 0 20px;
         }
 
+        /* Modern Job Card */
         .job-card {
-            background: white;
-            border-radius: 12px;
-            padding: 16px;
-            margin-bottom: 12px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            background: #FFFFFF;
+            border-radius: 24px;
+            padding: 24px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            transition: all 0.2s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card:active {
+            transform: scale(0.98);
         }
 
         .job-title {
-            font-size: 18px;
-            font-weight: 600;
-            color: #000;
-            margin-bottom: 4px;
+            font-size: 20px;
+            font-weight: 700;
+            color: #0A0A0A;
+            margin-bottom: 6px;
+            line-height: 1.2;
         }
 
         .job-company {
-            font-size: 15px;
-            color: #007AFF;
-            margin-bottom: 8px;
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 16px;
+            font-weight: 500;
         }
 
         .job-details {
-            font-size: 14px;
-            color: #8E8E93;
             display: flex;
-            gap: 12px;
-        }
-
-        .job-salary {
-            font-size: 16px;
-            font-weight: 600;
-            color: #34C759;
-            margin-top: 8px;
-        }
-
-        .suggestion-card {
-            background: #FFF3CD;
-            border-left: 4px solid #FF9500;
-            border-radius: 8px;
-            padding: 12px;
-            margin-bottom: 12px;
-        }
-
-        .suggestion-title {
-            font-size: 14px;
-            font-weight: 600;
-            color: #000;
-            margin-bottom: 4px;
-        }
-
-        .suggestion-text {
-            font-size: 13px;
-            color: #3C3C43;
-        }
-
-        .upload-button {
-            background: #007AFF;
-            color: white;
-            border: none;
-            border-radius: 12px;
-            padding: 16px;
-            font-size: 17px;
-            font-weight: 600;
-            width: 100%;
-            cursor: pointer;
-            margin-bottom: 20px;
-        }
-
-        .upload-button:hover {
-            background: #0051D5;
-        }
-
-        .tab-bar {
-            background: white;
-            display: flex;
-            justify-content: space-around;
-            padding: 8px 0;
-            border-top: 1px solid #E5E5EA;
-        }
-
-        .tab {
-            text-align: center;
-            padding: 8px;
-            color: #8E8E93;
-            font-size: 10px;
-            cursor: pointer;
-        }
-
-        .tab.active {
-            color: #007AFF;
-        }
-
-        .tab-icon {
-            font-size: 24px;
-            margin-bottom: 4px;
-        }
-
-        .view-selector {
-            display: flex;
+            align-items: center;
             gap: 10px;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-
-        .view-btn {
-            padding: 8px 16px;
-            border: 1px solid #007AFF;
-            background: white;
-            color: #007AFF;
-            border-radius: 8px;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .view-btn.active {
-            background: #007AFF;
-            color: white;
-        }
-
-        .sidebar {
-            background: white;
-            border-radius: 12px;
-            padding: 16px;
-            margin-top: 20px;
-        }
-
-        .sidebar-title {
-            font-size: 20px;
-            font-weight: 700;
-            margin-bottom: 16px;
-        }
-
-        .search-bar {
-            display: flex;
-            gap: 8px;
             margin-top: 12px;
         }
 
-        .search-bar input {
-            flex: 1;
-            padding: 10px 12px;
-            border: 1px solid #E5E5EA;
-            border-radius: 8px;
-            font-size: 15px;
+        .pill {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
         }
 
-        .search-bar button {
-            padding: 10px 16px;
-            background: #007AFF;
-            color: white;
-            border: none;
-            border-radius: 8px;
-            font-size: 15px;
-            cursor: pointer;
+        .pill-salary {
+            background: rgba(52, 199, 89, 0.1);
+            color: #248A3D;
         }
 
-        .search-bar button:hover {
-            background: #0051D5;
-        }
-
-        .loading-state,
-        .empty-state {
-            text-align: center;
-            padding: 40px 20px;
+        .pill-location {
+            background: #F2F2F7;
             color: #8E8E93;
         }
 
-        .spinner {
-            width: 32px;
-            height: 32px;
-            border: 3px solid #E5E5EA;
-            border-top-color: #007AFF;
+        /* Floating Dock Navigation */
+        .floating-dock {
+            position: absolute;
+            bottom: 34px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FFFFFF;
+            padding: 8px 24px;
+            border-radius: 40px;
+            display: flex;
+            gap: 32px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            z-index: 100;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .tab-btn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            width: 44px;
+            height: 44px;
             border-radius: 50%;
-            margin: 0 auto 12px;
-            animation: spin 1s linear infinite;
+            transition: all 0.2s;
+        }
+
+        .tab-btn.active {
+            background: #5959F3;
+            /* Opera Blurple */
+            color: white;
+            box-shadow: 0 4px 12px rgba(89, 89, 243, 0.3);
+        }
+
+        .tab-btn:not(.active) {
+            color: #C7C7CC;
+        }
+
+        .tab-icon {
+            font-size: 20px;
+        }
+
+        /* Inputs & Search */
+        .search-container {
+            margin-bottom: 24px;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 16px 20px;
+            padding-left: 48px;
+            border-radius: 18px;
+            border: none;
+            background: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 16px;
+            top: 50%;
+            transform: translateY(-50%);
+            opacity: 0.4;
+        }
+
+        .upload-area {
+            background: #FFFFFF;
+            border: 2px dashed #C7C7CC;
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: #5959F3;
+            color: white;
+            border: none;
+            padding: 18px;
+            border-radius: 18px;
+            font-size: 17px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(89, 89, 243, 0.25);
+            transition: transform 0.1s;
+        }
+
+        .btn-primary:active {
+            transform: scale(0.97);
+        }
+
+        /* Loading */
+        .spinner {
+            width: 30px;
+            height: 30px;
+            border: 3px solid #E5E5EA;
+            border-top-color: #5959F3;
+            border-radius: 50%;
+            margin: 20px auto;
+            animation: spin 0.8s linear infinite;
         }
 
         @keyframes spin {
@@ -244,365 +241,177 @@
                 transform: rotate(360deg);
             }
         }
-
-        .empty-hint {
-            font-size: 13px;
-            margin-top: 8px;
-        }
-
-        .job-card {
-            cursor: pointer;
-            transition: transform 0.1s, box-shadow 0.1s;
-        }
-
-        .job-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
-        }
-
-        .job-skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 6px;
-            margin-top: 8px;
-        }
-
-        .skill-tag {
-            background: #E5E5EA;
-            color: #3C3C43;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-        }
     </style>
 </head>
 
 <body>
-    <div style="text-align: center; padding: 20px;">
-        <h1 style="color: #007AFF;">AppleSauce Preview</h1>
-        <div class="view-selector">
-            <button class="view-btn active" onclick="showView('upload')">Upload</button>
-            <button class="view-btn" onclick="showView('jobs')">Jobs</button>
-            <button class="view-btn" onclick="showView('detail')">Job Detail</button>
-        </div>
-    </div>
-
+    <!-- iOS Frame -->
     <div class="ios-frame">
-        <div class="screen">
-            <div class="status-bar">
-                <span>9:41</span>
-                <span>📶 📡 🔋</span>
+        <div class="status-bar">
+            <span>9:41</span>
+            <span>6G</span>
+        </div>
+
+        <!-- Scrollable Screen Content -->
+        <div id="main-scroll" class="screen">
+            <!-- Dynamic Content Injected Here -->
+            <div id="content-area"></div>
+        </div>
+
+        <!-- Floating Dock (Fixed at bottom of frame) -->
+        <div class="floating-dock">
+            <div class="tab-btn" id="tab-home" onclick="switchTab(0)">
+                <div class="tab-icon">🏠</div>
             </div>
-
-            <!-- Upload View -->
-            <div id="upload-view" class="view-content" style="flex-direction: column;">
-                <div class="nav-bar">
-                    <div class="nav-title">Upload Resume</div>
-                </div>
-                <div class="content">
-                    <input type="file" id="resume-file-input" accept=".pdf,.docx" style="display: none;">
-                    <button class="upload-button" onclick="document.getElementById('resume-file-input').click()">Upload
-                        Resume</button>
-                    <div id="upload-status" style="text-align: center; color: #8E8E93; font-size: 14px;">
-                        <p>Upload your resume to get started</p>
-                        <p style="margin-top: 8px;">Supports PDF and DOCX</p>
-                    </div>
-                    <div id="upload-loading" class="loading-state" style="display: none;">
-                        <div class="spinner"></div>
-                        <p>Parsing resume...</p>
-                    </div>
-                    <div id="resume-result" style="display: none; margin-top: 20px;">
-                        <h3 style="margin-bottom: 12px;">Parsed Resume</h3>
-                        <div class="job-card" style="cursor: default;">
-                            <div class="job-title" id="resume-filename"></div>
-                            <div class="job-details">
-                                <span id="resume-status"></span>
-                            </div>
-                            <div id="resume-preview"
-                                style="margin-top: 12px; font-size: 13px; color: #3C3C43; max-height: 150px; overflow-y: auto;">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="tab-bar">
-                    <div class="tab active" onclick="showView('upload')">
-                        <div class="tab-icon">📄</div>
-                        <div>Upload</div>
-                    </div>
-                    <div class="tab" onclick="showView('jobs')">
-                        <div class="tab-icon">💼</div>
-                        <div>Jobs</div>
-                    </div>
-                </div>
+            <div class="tab-btn" id="tab-upload" onclick="switchTab(1)">
+                <div class="tab-icon">📄</div>
             </div>
-
-            <!-- Jobs View -->
-            <div id="jobs-view" class="view-content" style="display: none; flex-direction: column;">
-                <div class="nav-bar">
-                    <div class="nav-title">Job Matches</div>
-                    <div class="search-bar">
-                        <input type="text" id="job-search-input" placeholder="Search jobs..."
-                            value="software developer">
-                        <button id="search-btn" onclick="searchJobs()">Search</button>
-                    </div>
-                </div>
-                <div class="content">
-                    <div id="jobs-loading" class="loading-state" style="display: none;">
-                        <div class="spinner"></div>
-                        <p>Searching jobs...</p>
-                    </div>
-                    <div id="jobs-empty" class="empty-state" style="display: none;">
-                        <p>No jobs found</p>
-                        <p class="empty-hint">Try a different search term</p>
-                    </div>
-                    <div id="jobs-list"></div>
-                </div>
-                <div class="tab-bar">
-                    <div class="tab">
-                        <div class="tab-icon">📄</div>
-                        <div>Upload</div>
-                    </div>
-                    <div class="tab active">
-                        <div class="tab-icon">💼</div>
-                        <div>Jobs</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Job Detail View -->
-            <div id="detail-view" class="view-content" style="display: none; flex-direction: column;">
-                <div class="nav-bar">
-                    <div style="font-size: 17px; color: #007AFF; margin-bottom: 8px;">← Back</div>
-                    <div style="font-size: 24px; font-weight: 700;">Senior iOS Developer</div>
-                </div>
-                <div class="content">
-                    <div class="job-card">
-                        <div class="job-company" style="font-size: 18px;">Apple Inc.</div>
-                        <div class="job-details" style="margin-top: 8px;">
-                            <span>📍 Cupertino, CA</span>
-                            <span>⏰ Full-time</span>
-                        </div>
-                        <div class="job-salary">$150,000 - $200,000</div>
-                        <p style="margin-top: 16px; color: #3C3C43; line-height: 1.5;">
-                            We're looking for an experienced iOS developer to join our team...
-                        </p>
-                    </div>
-
-                    <div class="sidebar">
-                        <div class="sidebar-title">Resume Suggestions</div>
-                        <div class="suggestion-card">
-                            <div class="suggestion-title">🔴 Add SwiftUI Experience</div>
-                            <div class="suggestion-text">This role requires SwiftUI. Add projects showcasing your
-                                SwiftUI skills.</div>
-                        </div>
-                        <div class="suggestion-card" style="background: #E3F2FD; border-color: #007AFF;">
-                            <div class="suggestion-title">🔵 Highlight Team Leadership</div>
-                            <div class="suggestion-text">Emphasize your experience leading iOS development teams.</div>
-                        </div>
-                        <div class="suggestion-card" style="background: #E8F5E9; border-color: #34C759;">
-                            <div class="suggestion-title">🟢 Good Match</div>
-                            <div class="suggestion-text">Your 5 years of iOS experience aligns well with requirements.
-                            </div>
-                        </div>
-                    </div>
-
-                    <button class="upload-button" style="margin-top: 20px;">Apply Now →</button>
-                </div>
+            <div class="tab-btn" id="tab-jobs" onclick="switchTab(2)">
+                <div class="tab-icon">💼</div>
             </div>
         </div>
     </div>
 
     <script src="api.js"></script>
     <script>
-        // State
-        let currentJobs = [];
-        let currentResumeText = '';
-        let selectedJob = null;
+        let currentTab = 0;
 
-        function showView(view) {
-            document.querySelectorAll('.view-content').forEach(v => v.style.display = 'none');
-            document.querySelectorAll('.view-btn').forEach(b => b.classList.remove('active'));
+        // Views as template strings
+        const views = {
+            home: `
+                <div class="nav-bar">
+                    <div class="nav-title">Dashboard</div>
+                </div>
+                <div class="content">
+                    <div class="job-card" style="background: linear-gradient(135deg, #5959F3 0%, #9059F3 100%); color: white;">
+                        <div style="font-size: 14px; opacity: 0.8; margin-bottom: 8px;">Welcome</div>
+                        <div style="font-size: 24px; font-weight: 700; margin-bottom: 20px;">Guest</div>
+                        <div style="font-size: 13px; opacity: 0.9; line-height: 1.4;">
+                            Connect your account in the iOS app to seeing tracking stats and matched jobs.
+                        </div>
+                    </div>
+                    
+                    <h3 style="margin: 24px 0 12px; font-size: 18px; font-weight: 700;">Get Started</h3>
+                    <div class="job-card" style="padding: 16px; display:flex; align-items:center; gap: 12px;" onclick="switchTab(1)">
+                        <div style="width: 40px; height: 40px; background: #E5E5EA; border-radius: 12px; display:flex; align-items:center; justify-content:center;">📄</div>
+                        <div>
+                            <div style="font-weight: 600;">Check Resume</div>
+                            <div style="font-size: 12px; color: #8E8E93;">Analyze your resume format</div>
+                        </div>
+                    </div>
+                    
+                    <div class="job-card" style="padding: 16px; display:flex; align-items:center; gap: 12px;" onclick="switchTab(2)">
+                         <div style="width: 40px; height: 40px; background: #E5E5EA; border-radius: 12px; display:flex; align-items:center; justify-content:center;">🔍</div>
+                        <div>
+                            <div style="font-weight: 600;">Search Jobs</div>
+                            <div style="font-size: 12px; color: #8E8E93;">Browse open positions</div>
+                        </div>
+                    </div>
+                </div>
+            `,
+            upload: `
+                <div class="nav-bar">
+                    <div class="nav-title">Check Resume</div>
+                </div>
+                <div class="content">
+                    <div class="upload-area" onclick="document.getElementById('file-input').click()">
+                        <div style="font-size: 40px; margin-bottom: 12px;">📄</div>
+                        <div style="font-weight: 600; margin-bottom: 4px;">Tap to Upload</div>
+                        <div style="font-size: 13px; color: #8E8E93;">PDF or DOCX</div>
+                    </div>
+                    <input type="file" id="file-input" hidden onchange="handleFile(this.files[0])">
+                    
+                    <div id="upload-result"></div>
+                </div>
+            `,
+            jobs: `
+                <div class="nav-bar">
+                    <div class="nav-title">Jobs</div>
+                </div>
+                <div class="content">
+                    <div class="search-container">
+                        <span class="search-icon">🔍</span>
+                        <input type="text" class="search-input" placeholder="Search roles..." onkeydown="if(event.key==='Enter') search(this.value)">
+                    </div>
+                    <div id="jobs-list">
+                        <div style="text-align: center; color: #8E8E93; margin-top: 40px;">Search for a job to see results</div>
+                    </div>
+                </div>
+            `
+        };
 
-            if (view === 'upload') {
-                document.getElementById('upload-view').style.display = 'flex';
-                document.querySelectorAll('.view-btn')[0].classList.add('active');
-            } else if (view === 'jobs') {
-                document.getElementById('jobs-view').style.display = 'flex';
-                document.querySelectorAll('.view-btn')[1].classList.add('active');
-                if (currentJobs.length === 0) {
-                    searchJobs();
+        function switchTab(index) {
+            currentTab = index;
+            const content = document.getElementById('content-area');
+
+            // Update Tab UI
+            document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+                if (i === index) btn.classList.add('active');
+                else btn.classList.remove('active');
+            });
+
+            // Render View
+            if (index === 0) content.innerHTML = views.home;
+            if (index === 1) content.innerHTML = views.upload;
+            if (index === 2) {
+                content.innerHTML = views.jobs;
+                const list = document.getElementById('jobs-list');
+                if (list && list.innerHTML.includes('Search for a job')) {
+                    // search('software developer'); // No auto search to save API calls
                 }
-            } else if (view === 'detail') {
-                document.getElementById('detail-view').style.display = 'flex';
-                document.querySelectorAll('.view-btn')[2].classList.add('active');
             }
         }
 
-        async function searchJobs() {
-            const query = document.getElementById('job-search-input').value || 'software developer';
-            const jobsList = document.getElementById('jobs-list');
-            const loading = document.getElementById('jobs-loading');
-            const empty = document.getElementById('jobs-empty');
-
-            console.log('Searching for:', query);
-
-            // Show loading
-            jobsList.innerHTML = '';
-            loading.style.display = 'block';
-            empty.style.display = 'none';
+        async function search(query) {
+            const list = document.getElementById('jobs-list');
+            list.innerHTML = '<div class="spinner"></div>';
 
             try {
-                console.log('Calling api.searchJobs...');
                 const jobs = await api.searchJobs(query);
-                console.log('Got jobs:', jobs);
-                currentJobs = jobs;
-                loading.style.display = 'none';
-
-                if (!jobs || jobs.length === 0) {
-                    console.log('No jobs found');
-                    empty.style.display = 'block';
+                if (jobs.length === 0) {
+                    list.innerHTML = '<div style="text-align:center; padding: 20px; color: #8E8E93;">No jobs found</div>';
                     return;
                 }
 
-                console.log('Rendering', jobs.length, 'jobs');
-                renderJobs(jobs);
-            } catch (error) {
-                console.error('Search error:', error);
-                loading.style.display = 'none';
-                empty.style.display = 'block';
-                console.error('Search error:', error);
-                loading.style.display = 'none';
-                empty.style.display = 'block';
-                empty.querySelector('p').innerHTML = `Error loading jobs<br><small style="color:red">${error.message}</small>`;
-                if (error.message.includes('Failed to fetch')) {
-                    empty.querySelector('p').innerHTML += '<br><small>Check if backend is running on port 8000</small>';
-                }
-            }
-        }
-
-        function renderJobs(jobs) {
-            const jobsList = document.getElementById('jobs-list');
-            jobsList.innerHTML = jobs.map((job, index) => `
-                <div class="job-card" onclick="showJobDetail(${index})">
-                    <div class="job-title">${escapeHtml(job.title)}</div>
-                    <div class="job-company">${escapeHtml(job.company)}</div>
-                    <div class="job-details">
-                        <span>${escapeHtml(job.location || 'Location not specified')}</span>
-                        <span>${escapeHtml(job.source || '')}</span>
-                    </div>
-                    ${job.salary && job.salary !== 'Not specified' ?
-                    `<div class="job-salary">${escapeHtml(job.salary)}</div>` : ''}
-                    ${job.skills && job.skills.length > 0 ? `
-                        <div class="job-skills">
-                            ${job.skills.slice(0, 4).map(skill =>
-                        `<span class="skill-tag">${escapeHtml(skill)}</span>`
-                    ).join('')}
+                list.innerHTML = jobs.map(job => `
+                    <div class="job-card">
+                        <div class="job-title">${job.title}</div>
+                        <div class="job-company">${job.company}</div>
+                        <div class="job-details">
+                            <span class="pill pill-location">${job.location || 'Remote'}</span>
+                            ${job.salary ? `<span class="pill pill-salary">${job.salary}</span>` : ''}
                         </div>
-                    ` : ''}
-                </div>
-            `).join('');
-        }
-
-        function showJobDetail(index) {
-            selectedJob = currentJobs[index];
-            if (!selectedJob) return;
-
-            // Update detail view content
-            document.querySelector('#detail-view .nav-bar').innerHTML = `
-                <div style="font-size: 17px; color: #007AFF; margin-bottom: 8px; cursor: pointer;" onclick="showView('jobs')">← Back</div>
-                <div style="font-size: 24px; font-weight: 700;">${escapeHtml(selectedJob.title)}</div>
-            `;
-
-            const content = document.querySelector('#detail-view .content');
-            content.innerHTML = `
-                <div class="job-card" style="cursor: default;">
-                    <div class="job-company" style="font-size: 18px;">${escapeHtml(selectedJob.company)}</div>
-                    <div class="job-details" style="margin-top: 8px;">
-                        <span>${escapeHtml(selectedJob.location || 'Location not specified')}</span>
-                        <span>${escapeHtml(selectedJob.source || '')}</span>
                     </div>
-                    ${selectedJob.salary && selectedJob.salary !== 'Not specified' ?
-                    `<div class="job-salary">${escapeHtml(selectedJob.salary)}</div>` : ''}
-                    ${selectedJob.skills && selectedJob.skills.length > 0 ? `
-                        <div class="job-skills" style="margin-top: 12px;">
-                            ${selectedJob.skills.map(skill =>
-                        `<span class="skill-tag">${escapeHtml(skill)}</span>`
-                    ).join('')}
-                        </div>
-                    ` : ''}
-                    <p style="margin-top: 16px; color: #3C3C43; line-height: 1.5; max-height: 200px; overflow-y: auto;">
-                        ${escapeHtml(selectedJob.description || 'No description available').substring(0, 500)}${selectedJob.description && selectedJob.description.length > 500 ? '...' : ''}
-                    </p>
-                </div>
+                `).join('');
 
-                <a href="${escapeHtml(selectedJob.url || '#')}" target="_blank" class="upload-button" style="margin-top: 20px; display: block; text-align: center; text-decoration: none;">
-                    Apply Now
-                </a>
-            `;
-
-            showView('detail');
-        }
-
-        function escapeHtml(text) {
-            if (!text) return '';
-            const div = document.createElement('div');
-            div.textContent = text;
-            return div.innerHTML;
-        }
-
-        // Resume upload handler
-        async function handleResumeUpload(file) {
-            const status = document.getElementById('upload-status');
-            const loading = document.getElementById('upload-loading');
-            const result = document.getElementById('resume-result');
-
-            status.style.display = 'none';
-            loading.style.display = 'block';
-            result.style.display = 'none';
-
-            try {
-                const data = await api.uploadResume(file);
-
-                loading.style.display = 'none';
-
-                if (!data) {
-                    status.style.display = 'block';
-                    status.innerHTML = '<p style="color: #FF3B30;">Error parsing resume. Is the backend running?</p>';
-                    return;
-                }
-
-                currentResumeText = data.text || '';
-
-                document.getElementById('resume-filename').textContent = data.filename || file.name;
-                document.getElementById('resume-status').textContent = data.message || 'Parsed successfully';
-                document.getElementById('resume-preview').textContent =
-                    currentResumeText.substring(0, 300) + (currentResumeText.length > 300 ? '...' : '');
-
-                result.style.display = 'block';
-            } catch (error) {
-                loading.style.display = 'none';
-                status.style.display = 'block';
-                status.innerHTML = '<p style="color: #FF3B30;">Error uploading resume</p>';
+            } catch (e) {
+                list.innerHTML = '<div style="text-align:center; color: red;">Error fetching jobs</div>';
             }
         }
 
-        // Allow search on Enter key and setup file input
-        document.addEventListener('DOMContentLoaded', () => {
-            const searchInput = document.getElementById('job-search-input');
-            if (searchInput) {
-                searchInput.addEventListener('keypress', (e) => {
-                    if (e.key === 'Enter') searchJobs();
-                });
-            }
+        async function handleFile(file) {
+            if (!file) return;
+            const resArea = document.getElementById('upload-result');
+            resArea.innerHTML = '<div class="spinner"></div>';
 
-            const fileInput = document.getElementById('resume-file-input');
-            if (fileInput) {
-                fileInput.addEventListener('change', (e) => {
-                    const file = e.target.files[0];
-                    if (file) handleResumeUpload(file);
-                });
+            // Use public upload
+            const data = await api.uploadResumePublic(file);
+            if (data) {
+                resArea.innerHTML = `
+                    <div class="job-card" style="border-left: 4px solid #34C759;">
+                        <div style="font-weight:700; margin-bottom:8px;">✅ Parsed Successfully</div>
+                        <div style="font-size:13px; color:#666;">${data.filename}</div>
+                        <div style="font-size:12px; color:#8E8E93; margin-top:4px;">Guest Mode: Not saved to profile</div>
+                    </div>
+                `;
+            } else {
+                resArea.innerHTML = '<div style="color:red; text-align:center;">Upload failed</div>';
             }
-        });
+        }
+
+        // Init
+        switchTab(0);
+
     </script>
 </body>
 
